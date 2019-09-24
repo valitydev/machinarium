@@ -2,6 +2,7 @@ package com.rbkmoney.machinarium.client;
 
 import com.rbkmoney.machinarium.domain.TMachineEvent;
 import com.rbkmoney.machinarium.exception.*;
+import com.rbkmoney.machinegun.stateproc.HistoryRange;
 import com.rbkmoney.machinegun.stateproc.Machine;
 
 import java.util.List;
@@ -14,6 +15,6 @@ public interface AutomatonClient<A, V> {
 
     Machine getMachine(String machineId) throws MachineNotFoundException, NamespaceNotFoundException;
 
-    List<TMachineEvent<V>> getEvents(String machineId) throws MachineNotFoundException, NamespaceNotFoundException;
+    List<TMachineEvent<V>> getEvents(String machineId, HistoryRange historyRange) throws MachineNotFoundException, NamespaceNotFoundException;
 
 }
