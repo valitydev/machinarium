@@ -60,7 +60,6 @@ public abstract class AbstractProcessorHandler<A extends TBase, V extends TBase>
                 InitSignal initSignal = args.getSignal().getInit();
                 return processSignalInit(machine.getNs(), machine.getId(), Geck.msgPackToTBase(initSignal.getArg().getBin(), argsType));
             case TIMEOUT:
-            case REPAIR:
                 return processSignalTimeout(machine.getNs(), machine.getId(), TMachineUtil.getMachineEvents(machine, resultType));
             default:
                 throw new UnsupportedOperationException(String.format("Unsupported signal type, signalType='%s'", signalType));
