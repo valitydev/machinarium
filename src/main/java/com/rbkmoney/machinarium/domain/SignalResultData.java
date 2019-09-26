@@ -1,15 +1,15 @@
 package com.rbkmoney.machinarium.domain;
 
 import com.rbkmoney.machinegun.stateproc.ComplexAction;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 
 import java.util.List;
 
 @Getter
 @ToString
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class SignalResultData<T> {
 
     private final List<T> newEvents;

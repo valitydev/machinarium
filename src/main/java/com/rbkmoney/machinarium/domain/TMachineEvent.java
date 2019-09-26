@@ -1,14 +1,14 @@
 package com.rbkmoney.machinarium.domain;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 
 import java.time.Instant;
 
 @Getter
 @ToString
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class TMachineEvent<T> {
 
     private final long id;
