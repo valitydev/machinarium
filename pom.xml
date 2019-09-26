@@ -20,7 +20,7 @@
         <dependency>
             <groupId>com.rbkmoney</groupId>
             <artifactId>machinegun-proto</artifactId>
-            <version>1.9-b71bfca</version>
+            <version>1.13-9a32c53</version>
         </dependency>
         <dependency>
             <groupId>com.rbkmoney.woody</groupId>

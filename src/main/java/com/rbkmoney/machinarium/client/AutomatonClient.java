@@ -15,6 +15,10 @@ public interface AutomatonClient<A, V> {
 
     Machine getMachine(String machineId) throws MachineNotFoundException, NamespaceNotFoundException;
 
+    Machine getMachine(String machineId, HistoryRange historyRange) throws MachineNotFoundException, NamespaceNotFoundException;
+
+    List<TMachineEvent<V>> getEvents(String machineId) throws MachineNotFoundException, NamespaceNotFoundException;
+
     List<TMachineEvent<V>> getEvents(String machineId, HistoryRange historyRange) throws MachineNotFoundException, NamespaceNotFoundException;
 
 }
