@@ -78,8 +78,7 @@ public class TBaseAutomatonClient<A extends TBase, V extends TBase> implements A
 
     @Override
     public List<TMachineEvent<V>> getEvents(String machineId) throws MachineNotFoundException, NamespaceNotFoundException {
-        Machine machine = getMachine(machineId);
-        return TMachineUtil.getMachineEvents(machine, resultType);
+        return getEvents(machineId, new HistoryRange());
     }
 
     @Override
