@@ -25,8 +25,8 @@ Machinegun -> ServiceAutomatonServer : processSignalInit
 ServiceAutomatonServer -> Machinegun : response
 
 note left
-    В зависимости от ComplexAction в ответе зависит
-    будет ли вызван processSignalTimeout, либо нет
+    Исходя из ответа, в ComplexAction, определяется, 
+    будет вызван processSignalTimeout или нет
 end note
 
 Machinegun -> ServiceAutomatonServer : processSignalTimeout
