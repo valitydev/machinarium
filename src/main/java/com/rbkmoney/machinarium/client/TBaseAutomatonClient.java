@@ -60,8 +60,13 @@ public class TBaseAutomatonClient<A extends TBase, V extends TBase> implements A
 
     @Override
     public Machine getMachine(String machineId) throws MachineNotFoundException, NamespaceNotFoundException {
+        return getMachine(machineId, new HistoryRange());
+    }
+
+    @Override
+    public Machine getMachine(String machineId, HistoryRange historyRange) throws MachineNotFoundException, NamespaceNotFoundException {
         try {
-            return client.getMachine(new MachineDescriptor(namespace, Reference.id(machineId), new HistoryRange()));
+            return client.getMachine(new MachineDescriptor(namespace, Reference.id(machineId), historyRange));
         } catch (MachineNotFound ex) {
             throw new MachineNotFoundException(String.format("Machine not found, namespace='%s', machineId='%s'", namespace, machineId), ex);
         } catch (NamespaceNotFound ex) {
@@ -73,7 +78,12 @@ public class TBaseAutomatonClient<A extends TBase, V extends TBase> implements A
 
     @Override
     public List<TMachineEvent<V>> getEvents(String machineId) throws MachineNotFoundException, NamespaceNotFoundException {
-        Machine machine = getMachine(machineId);
+        return getEvents(machineId, new HistoryRange());
+    }
+
+    @Override
+    public List<TMachineEvent<V>> getEvents(String machineId, HistoryRange historyRange) throws MachineNotFoundException, NamespaceNotFoundException {
+        Machine machine = getMachine(machineId, historyRange);
         return TMachineUtil.getMachineEvents(machine, resultType);
     }
 

@@ -11,14 +11,13 @@ import com.rbkmoney.machinarium.handler.AbstractProcessorHandler;
 import com.rbkmoney.machinegun.msgpack.Value;
 import com.rbkmoney.machinegun.stateproc.AutomatonSrv;
 import com.rbkmoney.machinegun.stateproc.ComplexAction;
+import com.rbkmoney.machinegun.stateproc.HistoryRange;
 import com.rbkmoney.machinegun.stateproc.ProcessorSrv;
 import com.rbkmoney.woody.thrift.impl.http.THSpawnClientBuilder;
 import org.junit.Before;
 import org.junit.Test;
 
 import javax.servlet.Servlet;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -87,7 +86,7 @@ public class MachinegunComplexTest extends AbstractTest {
         } catch (MachineAlreadyExistsException ex) {
 
         }
-        List<TMachineEvent<Value>> events = aClient.getEvents(machineId);
+        List<TMachineEvent<Value>> events = aClient.getEvents(machineId, new HistoryRange());
         assertEquals(1, events.size());
         assertEquals(Value.b(true), events.get(0).getData());
     }
@@ -98,7 +97,7 @@ public class MachinegunComplexTest extends AbstractTest {
         aClient.start(machineId, Value.b(true));
         Value value = aClient.call(machineId, Value.b(false));
         assertEquals(Value.b(false), value);
-        List<TMachineEvent<Value>> events = aClient.getEvents(machineId);
+        List<TMachineEvent<Value>> events = aClient.getEvents(machineId, new HistoryRange());
         assertEquals(2, events.size());
         assertEquals(Value.b(true), events.get(0).getData());
         assertEquals(Value.b(false), events.get(1).getData());

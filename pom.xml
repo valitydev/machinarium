@@ -12,7 +12,7 @@
 
     <groupId>com.rbkmoney</groupId>
     <artifactId>machinarium</artifactId>
-    <version>0.2.5</version>
+    <version>0.2.6</version>
 
     <description>Machinegun java client/processor handler lib</description>
 
@@ -20,7 +20,7 @@
         <dependency>
             <groupId>com.rbkmoney</groupId>
             <artifactId>machinegun-proto</artifactId>
-            <version>1.9-b71bfca</version>
+            <version>1.13-9a32c53</version>
         </dependency>
         <dependency>
             <groupId>com.rbkmoney.woody</groupId>
@@ -31,6 +31,12 @@
             <groupId>com.rbkmoney.geck</groupId>
             <artifactId>serializer</artifactId>
             <version>0.6.9</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.10</version>
+            <scope>provided</scope>
         </dependency>
         <!--Test libs-->
         <dependency>
