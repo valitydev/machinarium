@@ -1,8 +1,11 @@
 package com.rbkmoney.machinarium.handler;
 
+import com.rbkmoney.geck.common.util.StringUtil;
+import com.rbkmoney.geck.common.util.TypeUtil;
 import com.rbkmoney.geck.serializer.Geck;
 import com.rbkmoney.machinarium.domain.CallResultData;
 import com.rbkmoney.machinarium.domain.SignalResultData;
+import com.rbkmoney.machinarium.domain.TMachine;
 import com.rbkmoney.machinarium.domain.TMachineEvent;
 import com.rbkmoney.machinarium.util.TMachineUtil;
 import com.rbkmoney.machinegun.msgpack.Value;
@@ -10,6 +13,8 @@ import com.rbkmoney.machinegun.stateproc.*;
 import org.apache.thrift.TBase;
 import org.apache.thrift.TException;
 
+import java.time.Instant;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -54,15 +59,31 @@ public abstract class AbstractProcessorHandler<A extends TBase, V extends TBase>
     }
 
     private SignalResultData<V> processSignal(Signal._Fields signalType, SignalArgs args, Machine machine) {
+        Instant machineTimer = null;
+        if (machine.getTimer() != null && !machine.getTimer().isEmpty()) {
+            machineTimer = TypeUtil.stringToInstant(machine.getTimer());
+        }
+        TMachine<V> tMachine = null;
         switch (signalType) {
             case INIT:
                 InitSignal initSignal = args.getSignal().getInit();
-                return processSignalInit(machine.getNs(), machine.getId(), machine.getAuxState(), Geck.msgPackToTBase(initSignal.getArg().getBin(), argsType));
+                A arg = Geck.msgPackToTBase(initSignal.getArg().getBin(), argsType);
+                tMachine = new TMachine<>(machine.getNs(), machine.getId(), machineTimer, machine.getAuxState(), Collections.emptyList());
+
+                return processSignalInit(tMachine, arg);
             case TIMEOUT:
-                return processSignalTimeout(machine.getNs(), machine.getId(), machine.getAuxState(), TMachineUtil.getMachineEvents(machine, resultType));
+                List<TMachineEvent<V>> machineEvents = TMachineUtil.getMachineEvents(machine, resultType);
+                tMachine = new TMachine<>(machine.getNs(), machine.getId(), machineTimer, machine.getAuxState(), machineEvents);
+
+                return processSignalTimeout(tMachine, TMachineUtil.getMachineEvents(machine, resultType));
             default:
                 throw new UnsupportedOperationException(String.format("Unsupported signal type, signalType='%s'", signalType));
         }
+    }
+
+    @Override
+    public RepairResult processRepair(RepairArgs repairArgs) throws RepairFailed, TException {
+        throw new UnsupportedOperationException("processRepair not implemented");
     }
 
     private MachineStateChange buildMachineStateChange(Value state, List<V> newEvents) {
@@ -75,9 +96,9 @@ public abstract class AbstractProcessorHandler<A extends TBase, V extends TBase>
         return machineStateChange;
     }
 
-    protected abstract SignalResultData<V> processSignalInit(String namespace, String machineId, Content machineState, A args);
+    protected abstract SignalResultData<V> processSignalInit(TMachine<V> machine, A args);
 
-    protected abstract SignalResultData<V> processSignalTimeout(String namespace, String machineId, Content machineState, List<TMachineEvent<V>> events);
+    protected abstract SignalResultData<V> processSignalTimeout(TMachine<V> machine, List<TMachineEvent<V>> events);
 
     protected abstract CallResultData<V> processCall(String namespace, String machineId, A args, List<TMachineEvent<V>> events);
 
