@@ -7,7 +7,7 @@
 
 ```
 <dependency>
-    <groupId>com.rbkmoney</groupId>
+    <groupId>dev.vality</groupId>
     <artifactId>machinarium</artifactId>
     <version>${machinarium.version}</version>
 </dependency>
@@ -16,12 +16,12 @@
 В зависимостях также должны быть указаны
 ```
 <dependency>
-    <groupId>com.rbkmoney.woody</groupId>
+    <groupId>dev.vality.woody</groupId>
     <artifactId>woody-thrift</artifactId>
     <version>${woody-thrift.version}</version>
 </dependency>
 <dependency>
-    <groupId>com.rbkmoney.gec</groupId>
+    <groupId>dev.vality.gec</groupId>
     <artifactId>serializer</artifactId>
     <version>${serializer.version}</version>
 </dependency>
@@ -64,7 +64,7 @@ public class AutomationConfiguration {
     }
 
     @Bean
-    public AutomatonClient<com.rbkmoney.machinegun.msgpack.Value, Change> automatonClient(
+    public AutomatonClient<dev.vality.machinegun.msgpack.Value, Change> automatonClient(
             @Value("${service.mg.automaton.namespace}") String namespace,
             AutomatonSrv.Iface automatonThriftClient
     ) {
