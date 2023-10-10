@@ -7,13 +7,13 @@
     <parent>
         <groupId>dev.vality</groupId>
         <artifactId>library-parent-pom</artifactId>
-        <version>1.0.2</version>
+        <version>1.0.3</version>
     </parent>
 
     <packaging>jar</packaging>
 
     <artifactId>machinarium</artifactId>
-    <version>0.0.2</version>
+    <version>0.0.3</version>
 
     <name>machinarium</name>
     <description>machinarium</description>
@@ -40,7 +40,7 @@
     </scm>
 
     <properties>
-        <jackson.version>2.13.1</jackson.version>
+        <jackson.version>2.15.2</jackson.version>
         <checkstyle.config.suppressions.path>./src/main/resources/checkstyle/checkstyle-suppressions.xml
         </checkstyle.config.suppressions.path>
     </properties>
@@ -59,12 +59,12 @@
         <dependency>
             <groupId>dev.vality</groupId>
             <artifactId>machinegun-proto</artifactId>
-            <version>1.24-f533965</version>
+            <version>1.41-96f7f11</version>
         </dependency>
         <dependency>
             <groupId>dev.vality.woody</groupId>
             <artifactId>woody-thrift</artifactId>
-            <version>1.0.4</version>
+            <version>1.0.5</version>
         </dependency>
         <dependency>
             <groupId>dev.vality.geck</groupId>
@@ -74,20 +74,20 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.22</version>
+            <version>1.18.30</version>
             <scope>provided</scope>
         </dependency>
         <!--Test libs-->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
-            <version>1.7.35</version>
+            <version>1.7.36</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.eclipse.jetty</groupId>
             <artifactId>jetty-quickstart</artifactId>
-            <version>9.4.44.v20210927</version>
+            <version>9.4.53.v20231009</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -99,7 +99,7 @@
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
-            <version>4.3.1</version>
+            <version>4.11.0</version>
             <scope>test</scope>
         </dependency>
         <dependency>
