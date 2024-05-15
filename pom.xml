@@ -13,7 +13,7 @@
     <packaging>jar</packaging>
 
     <artifactId>machinarium</artifactId>
-    <version>0.0.2</version>
+    <version>0.0.3</version>
 
     <name>machinarium</name>
     <description>machinarium</description>
@@ -59,7 +59,7 @@
         <dependency>
             <groupId>dev.vality</groupId>
             <artifactId>machinegun-proto</artifactId>
-            <version>1.24-f533965</version>
+            <version>1.43-3decc8f</version>
         </dependency>
         <dependency>
             <groupId>dev.vality.woody</groupId>
