@@ -13,7 +13,7 @@
     <packaging>jar</packaging>
 
     <artifactId>machinarium</artifactId>
-    <version>0.0.2</version>
+    <version>0.0.3</version>
 
     <name>machinarium</name>
     <description>machinarium</description>
@@ -81,13 +81,13 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
-            <version>1.7.35</version>
+            <version>1.7.36</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.eclipse.jetty</groupId>
             <artifactId>jetty-quickstart</artifactId>
-            <version>9.4.44.v20210927</version>
+            <version>9.4.56.v20240826</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -99,7 +99,7 @@
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
-            <version>4.3.1</version>
+            <version>4.11.0</version>
             <scope>test</scope>
         </dependency>
         <dependency>
